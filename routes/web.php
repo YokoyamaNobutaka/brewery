@@ -14,9 +14,7 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', [PostController::class, 'index']);
+/*/を取得したらPostController::classの'index'を実行*/
 Route::get('/posts', [PostController::class, 'index']);
-/*/postsをgetメソッド取得したら*/
+/*/postsをgetメソッド取得したらPostController::classの'index'を実行*/

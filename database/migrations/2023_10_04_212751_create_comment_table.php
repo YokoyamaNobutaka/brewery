@@ -13,9 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('comment', function (Blueprint $table) 
+        {
             $table->id();
+	        $table->bigInteger('users_id')->unsigned();    
+            //'usesr_id' は 'usersテーブル' の 'id' を参照する外部キーです
+            $table->bigInteger('posts_id')->unsigned();    
+            //'posts_id' は 'postsテーブル' の 'id' を参照する外部キーです
             $table->timestamps();
+	        $table->string('text', 500);
         });
     }
 
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('comment');
     }
 };
