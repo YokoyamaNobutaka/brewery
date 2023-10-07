@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-}
+    
+    protected $fillable = [
+    'name',
+    'area',
+    'rice',
+    'flavor',
+    'taste',
+    'alcholcontent',
+    'match'
+    ];
+}/*投稿作成処理モデル*/
+
