@@ -22,8 +22,7 @@ return new class extends Migration
 	        $table->string('taste', 50);
 	        $table->string('alcholcontent', 50);
 	        $table->string('match', 200);
-            $table->timestamps();
-            $table->softDeletes();
+	        $table->timestamps();
         });
     }
 

@@ -1,20 +1,28 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"><!-- 一覧スタート画面 -->
     <head>
         <meta charset="utf-8">
-        <title>Blog</title>
+        <title>brewery</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1>Blog Name</h1>
+        <h1>brewery</h1>
+        <a href='/posts/create'>投稿</a><!--投稿画面へ飛ぶルーティングcreate.blade.php-->
         <div class='posts'>
             @foreach ($posts as $post)
-                <div class='post'>
-                    <h2 class='title'>{{ $post->title }}</h2>
-                    <p class='body'>{{ $post->body }}</p>
+                <div class='post'><!-- 各日本酒の情報を表示 -->
+                    <h2 class='name'><!-- 記事詳細画面に行くためのリンクを日本酒名：nameに付与各ID名に飛ぶ-->
+                        <a href="/posts/{{ $post->id }}">{{ $post->name }}</a>
+                    </h2>
+                    <p class='area'>{{ $post->area }}</p>
+                    <p class='rice'>{{ $post->rice }}</p>
+                    <p class='flavor'>{{ $post->flavor }}</p>
+                    <p class='taste'>{{ $post->taste }}</p>
+                    <p class='alcholcontent'>{{ $post->alcholcontent }}</p>
+                    <h3 class='match'>{{ $post->match }}</h3>
                 </div>
             @endforeach
         </div>
     </body>
-</html>
+</html><!-- 一覧スタート画面 -->

@@ -15,6 +15,10 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/', [PostController::class, 'index']);
-/*/を取得したらPostController::classの'index'を実行*/
-Route::get('/posts', [PostController::class, 'index']);
-/*/postsをgetメソッド取得したらPostController::classの'index'を実行*/
+/*一覧スタート画面：/を取得したらPostController::classの'index'を実行*/
+Route::get('/posts/create', [PostController::class, 'create']);
+//投稿画面：*/posts/createをgetメソッド取得したらPostController::classの'create'を実行*/
+Route::get('/posts/{post}', [PostController::class, 'show']);
+//詳細画面：*/posts/{post}をgetメソッド取得したらPostController::classの'show'を実行*/
+Route::post('/posts', [PostController::class, 'store']);
+/*投稿画面  保存用：/postsをpostメソッド取得したらPostController::classの'store'を実行*/
