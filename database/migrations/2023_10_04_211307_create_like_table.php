@@ -16,12 +16,9 @@ return new class extends Migration
         Schema::create('like', function (Blueprint $table) 
         {
             $table->id();
-	        $table->bigInteger('users_id')->unsigned();    
-            //'user_id' は 'usersテーブル' の 'id' を参照する外部キーです
-            $table->bigInteger('posts_id')->unsigned();    
-            //'posts_id' は 'postsテーブル' の 'id' を参照する外部キーです
+            $table->foreignId('post_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

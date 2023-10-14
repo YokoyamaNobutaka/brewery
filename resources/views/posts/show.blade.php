@@ -24,6 +24,36 @@
                     <h3 class='match'>{{ $post->match }}</h3>   
                 </div>
             </div>
+            <div>
+                <!-- もし$likeがあれば＝ユーザーが「いいね」をしていたら -->
+                @if($like)
+                    <!-- 「いいね」取消用ボタンを表示 -->
+    	            <a href="{{ route('unlike', $post) }}" class="btn btn-success btn-sm">
+    		        いいね
+    		            <span class="badge">{{ $post->likes->count() }}</span><!-- 「いいね」の数を表示 -->
+    	            </a>
+                @else
+                    <!-- まだユーザーが「いいね」をしていなければ、「いいね」ボタンを表示 -->
+	                <a href="{{ route('like', $post) }}" class="btn btn-secondary btn-sm">
+		            いいね
+		            <span class="badge">{{ $post->likes->count() }}</span><!-- 「いいね」の数を表示 -->
+	                </a>
+                @endif
+            </div>
+           <div>
+                <h1>コメント</h1><!--コメント機能-->
+                @foreach ($post->comments as $comment)
+                    <p>{{$comment->user->name}}</p>
+                    <p>{{$comment->body}}</p>
+                @endforeach
+                
+                <form action="/comments" method ="POST" >
+                    @csrf
+                    <input type="text" name="body" placeholder="コメント入力"></input>
+                    <input type="hidden" name="post_id" value="{{$post->id}}"></input>
+                    <button type="submit">コメントする</button>
+                </form>
+            </div> 
             <div class="footer">
                 <a href="/">戻る</a>
             </div>

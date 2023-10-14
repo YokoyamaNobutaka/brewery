@@ -16,12 +16,10 @@ return new class extends Migration
         Schema::create('comment', function (Blueprint $table) 
         {
             $table->id();
-	        $table->bigInteger('users_id')->unsigned();    
-            //'usesr_id' は 'usersテーブル' の 'id' を参照する外部キーです
-            $table->bigInteger('posts_id')->unsigned();    
-            //'posts_id' は 'postsテーブル' の 'id' を参照する外部キーです
+            $table->foreignId('posts_id')->constrained();
+            $table->foreignId('users_id')->constrained();
+            $table->string('body', 500);
             $table->timestamps();
-	        $table->string('text', 500);
         });
     }
 
