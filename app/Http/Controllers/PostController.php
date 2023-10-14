@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
+use App\Models\Comment;
+use App\Models\Like;
+use App\Models\User;
 /*ModelsのPostというモデルを使用*/
 
 class PostController extends Controller
@@ -14,9 +18,10 @@ class PostController extends Controller
         return view('posts.index')->with(['posts' => $post->get()]);  
     //一覧スタート画面：blade内で使う変数'posts'と設定。'posts'の中身にgetを使い、インスタンス化した$postを代入。
     }
-    public function show(Post $post)
+    public function show(Post $post ,Comment $comments)
     {
-        return view('posts.show')->with(['post' => $post]);
+        $like=Like::where('post_id', $post->id)->where('user_id', auth()->user()->id)->first();
+        return view('posts.show',compact('post', 'like'))->with(['post' => $post],['comment' => $comments]);
     //詳細画面：'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
     }
     public function create()
